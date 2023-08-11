@@ -1,8 +1,9 @@
-import requests
 import json
+import requests
 import time
 
-Base_URL= "https://10.10.20.14/api/aaaLogin.json"
+
+Base_URL= "https://127.0.0.1:58000/api/v1/ticket"
 
 data = {
 
@@ -12,7 +13,7 @@ data = {
 
             "name": "admin",
 
-            "pwd": "C1sco12345"
+            "pwd": "admin123!"
 
         }
 
@@ -34,7 +35,7 @@ API_Token = respuesta_json["imdata"][0]["aaaLogin"]["attributes"]["token"]
 
 print("API-Token :" + API_Token)
 
-url1 = "https://10.10.20.14/api/node/mo/uni/infra/vlanns-[test_vlan]-dynamic.json"
+url1 = "https://127.0.0.1:58000/api/v1/network-device"
 cabecera = {
     "Content-Type": "application/json"
 }
@@ -46,14 +47,14 @@ WebToken = {
 respuesta1 = requests.get(url1, headers=cabecera, cookies=WebToken,verify=False)
 print(respuesta1.json())
 
-def obtener_cantidad_dispositivos(BASE_URL=None):
-    response = requests.get(f"{BASE_URL}/obtenerInventario", headers=HEADERS)
+def obtener_cantidad_dispositivos(BASE_URL=None, HEADERS=None):
+    response = requests.get(f'{BASE_URL}/obtenerInventario', headers=HEADERS)
     data = response.json()
     cantidad_dispositivos = data.get("cantidad_dispositivos")
     return cantidad_dispositivos
 
-def monitorear_estado(BASE_URL=None):
-    response = requests.get(f"{BASE_URL}/monitorearEstado", headers=HEADERS)
+def monitorear_estado(BASE_URL=None, HEADERS=None):
+    response = requests.get(f'{BASE_URL}/monitorearEstado', headers=HEADERS)
     data = response.json()
     estado = data.get("estado")
     return estado
