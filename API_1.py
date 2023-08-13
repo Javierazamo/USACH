@@ -47,7 +47,7 @@ WebToken = {
 respuesta1 = requests.get(url1, headers=cabecera, cookies=WebToken,verify=False)
 print(respuesta1.json())
 
-def obtener_cantidad_dispositivos(BASE_URL=None, HEADERS=None):
+def obtener_cantidad_dispositivos(BSASE_URL=None, HEADERS=None):
     response = requests.get(f'{BASE_URL}/obtenerInventario', headers=HEADERS)
     data = response.json()
     cantidad_dispositivos = data.get("cantidad_dispositivos")
